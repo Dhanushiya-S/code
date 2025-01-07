@@ -1,0 +1,27 @@
+import numpy as np
+
+def split(matrix):
+    submatrices = []
+    for i in range(0, 16, 4):
+        for j in range(0, 16, 4):
+            submatrices.append(matrix[i:i+4,j:j+4])
+    return submatrices
+
+def multiply(submatrices):
+    A = np.array([[1,1,1,1],[1,1,1,1],[1,1,1,1],[1,1,1,1]])
+    result = []
+    for i in range(len(submatrices)):
+        result.append(np.dot(submatrices[i],A));
+    return result
+    
+matrix = np.random.randint(1, 10, size=(16, 16))  
+submatrices = split(matrix)
+multiplication_result = multiply(submatrices)
+
+print("Original 16x16 Matrix:")
+print(matrix)
+
+for i,res in enumerate(multiplication_result,start=1):
+    print(f"submatrix{i}")
+    print(res)
+
