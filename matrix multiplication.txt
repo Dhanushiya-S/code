@@ -7,19 +7,22 @@ def split(matrix):
             submatrices.append(matrix[i:i+4,j:j+4])
     return submatrices
 
-def multiply(submatrices):
-    A = np.array([[1,1,1,1],[1,1,1,1],[1,1,1,1],[1,1,1,1]])
+def multiply(submatrices1,submatrices2):
     result = []
-    for i in range(len(submatrices)):
-        result.append(np.dot(submatrices[i],A));
+    for i in range(len(submatrices1)):
+        result.append(np.dot(submatrices1[i],submatrices2[i]));
     return result
     
-matrix = np.random.randint(1, 10, size=(16, 16))  
-submatrices = split(matrix)
-multiplication_result = multiply(submatrices)
+matrix1 = np.random.randint(1, 10, size=(16, 16))
+matrix2 = np.random.randint(1, 10, size=(16, 16))  
+submatrices1 = split(matrix1)
+submatrices2 = split(matrix2)
+multiplication_result = multiply(submatrices1,submatrices2)
 
-print("Original 16x16 Matrix:")
-print(matrix)
+print("Original 16x16 Matrix1:")
+print(matrix1)
+print("Original 16x16 Matrix2:")
+print(matrix2)
 
 for i,res in enumerate(multiplication_result,start=1):
     print(f"submatrix{i}")
